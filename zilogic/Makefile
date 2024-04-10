@@ -4,13 +4,12 @@ PKG_NAME:=zilogic
 PKG_VERSION:=1.0.1
 PKG_RELEASE:=1
 
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_URL:=https://github.com/iamsidhu07/mysrc.git 
+PKG_SOURCE_VERSION:= 5f91a8ac849c09f58b9f6df5cafed4d8ff592935
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_SOURCE_VERSION)
 PKG_SOURCE:=$(PKG_SOURCE_SUBDIR).tar.xz
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_SOURCE_SUBDIR)
-PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://github.com/iamsidhu07/mysrc.git
-PKG_SOURCE_DATE:=2017-08-02
-PKG_MIRROR_HASH:=5ff7f8f237425c09d36e5db1421bf25b
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -21,7 +20,7 @@ define Package/zilogic
 endef
 
 define Build/Compile
-    $(TARGET_CC) $(TARGET_CFLAGS) -o $(PKG_BUILD_DIR)/helloworld.o -c $(PKG_BUILD_DIR)/helloworld.c
+	$(MAKE) CC = $(TARGET_CC) -C $(PKG_BUILD_DIR)/ 
 endef
 
 define Package/zilogic/install
