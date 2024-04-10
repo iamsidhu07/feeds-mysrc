@@ -6,9 +6,9 @@ PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://github.com/zilogic/hello_world.git
+PKG_SOURCE_URL:=https://github.com/iamsidhu07/mysrc.git
 PKG_SOURCE_DATE:=2017-08-02
-PKG_MIRROR_HASH:=
+PKG_MIRROR_HASH:=5ff7f8f237425c09d36e5db1421bf25b
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -21,7 +21,7 @@ endef
 define Build/Prepare
     $(call Build/Prepare/Default)
     mkdir -p $(PKG_BUILD_DIR)
-    cp $(PKG_SOURCE_DIR)/src/hello.c $(PKG_BUILD_DIR)
+    cp $(PKG_SOURCE_DIR)/mysrc/helloworld.c $(PKG_BUILD_DIR)
     patch -d $(PKG_BUILD_DIR) < $(PKG_SOURCE_DIR)/patch/out.patch
 endef
 
