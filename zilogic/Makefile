@@ -14,9 +14,9 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_SOURCE_SUBDIR)
 include $(INCLUDE_DIR)/package.mk
 
 define Package/zilogic
-  SECTION:=tryout
-  CATEGORY:=Zilogic
-  TITLE:=Hello World Package
+	SECTION:=tryout
+	CATEGORY:=Zilogic
+	TITLE:=Hello World Package
 endef
 
 define Build/Compile
@@ -24,8 +24,8 @@ define Build/Compile
 endef
 
 define Package/zilogic/install
-    $(INSTALL_DIR) $(1)/usr/bin
-    $(INSTALL_BIN) $(PKG_BUILD_DIR)/hello_world $(1)/usr/bin/
+	$(INSTALL_DIR) $(1)/usr/bin
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/hello_world $(1)/usr/bin/
 endef
 
 $(eval $(call BuildPackage,zilogic))
