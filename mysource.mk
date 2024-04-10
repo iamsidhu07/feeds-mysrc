@@ -1,0 +1,39 @@
+include $(TOPDIR)/rules.mk
+
+PKG_NAME:=zilogic
+PKG_VERSION:=1.0.1
+PKG_RELEASE:=1
+
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_URL:=https://github.com/zilogic/hello_world.git
+PKG_SOURCE_DATE:=2017-08-02
+PKG_MIRROR_HASH:=
+
+include $(INCLUDE_DIR)/package.mk
+
+define Package/zilogic
+  SECTION:=tryout
+  CATEGORY:=Zilogic
+  TITLE:=Hello World Package
+endef
+
+define Build/Prepare
+    $(call Build/Prepare/Default)
+    mkdir -p $(PKG_BUILD_DIR)
+    cp $(PKG_SOURCE_DIR)/src/hello.c $(PKG_BUILD_DIR)
+    patch -d $(PKG_BUILD_DIR) < $(PKG_SOURCE_DIR)/patch/out.patch
+endef
+
+define Build/Compile
+    $(TARGET_CC) $(TARGET_CFLAGS) -o $(PKG_BUILD_DIR)/hello_world.o -c $(PKG_BUILD_DIR)/hello.c
+    $(TARGET_CC) $(TARGET_LDFLAGS) -o $(PKG_BUILD_DIR)/hello_world $(PKG_BUILD_DIR)/hello_world.o
+endef
+
+define Package/zilogic/install
+    $(INSTALL_DIR) $(1)/usr/bin
+    $(INSTALL_BIN) $(PKG_BUILD_DIR)/hello_world $(1)/usr/bin/
+endef
+
+$(eval $(call BuildPackage,zilogic))
+
