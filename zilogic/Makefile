@@ -4,7 +4,9 @@ PKG_NAME:=zilogic
 PKG_VERSION:=1.0.1
 PKG_RELEASE:=1
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE:=$(PKG_SOURCE_SUBDIR).tar.xz
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_SOURCE_SUBDIR)
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/iamsidhu07/mysrc.git
 PKG_SOURCE_DATE:=2017-08-02
@@ -16,13 +18,6 @@ define Package/zilogic
   SECTION:=tryout
   CATEGORY:=Zilogic
   TITLE:=Hello World Package
-endef
-
-define Build/Prepare
-    $(call Build/Prepare/Default)
-    mkdir -p $(PKG_BUILD_DIR)
-    cp $(PKG_SOURCE_DIR)/mysrc/helloworld.c $(PKG_BUILD_DIR)
-    patch -d $(PKG_BUILD_DIR) < $(PKG_SOURCE_DIR)/patch/out.patch
 endef
 
 define Build/Compile
