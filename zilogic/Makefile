@@ -20,7 +20,7 @@ define Package/zilogic
 endef
 
 define Build/Compile
-	$(MAKE) CC = $(TARGET_CC) -C $(PKG_BUILD_DIR)/ 
+	$(MAKE) CC=$(TARGET_CC) -C $(PKG_BUILD_DIR)/ 
 endef
 
 define Package/zilogic/install
