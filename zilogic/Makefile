@@ -21,8 +21,7 @@ define Package/zilogic
 endef
 
 define Build/Compile
-    $(TARGET_CC) $(TARGET_CFLAGS) -o $(PKG_BUILD_DIR)/hello_world.o -c $(PKG_BUILD_DIR)/hello.c
-    $(TARGET_CC) $(TARGET_LDFLAGS) -o $(PKG_BUILD_DIR)/hello_world $(PKG_BUILD_DIR)/hello_world.o
+    $(TARGET_CC) $(TARGET_CFLAGS) -o $(PKG_BUILD_DIR)/helloworld.o -c $(PKG_BUILD_DIR)/helloworld.c
 endef
 
 define Package/zilogic/install
